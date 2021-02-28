@@ -7,6 +7,7 @@ import {
 import { Product } from './schemas/Product';
 import { ProductImage } from './schemas/ProductImage';
 import { User } from './schemas/User';
+import { Lifeseed } from './schemas/Lifeseed';
 import 'dotenv/config';
 import { insertSeedData } from './seed-data';
 
@@ -49,6 +50,7 @@ export default withAuth(
     lists: createSchema({
       // Schema items go in here
       User,
+      Lifeseed,
       Product,
       ProductImage,
     }),
