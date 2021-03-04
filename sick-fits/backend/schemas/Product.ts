@@ -4,6 +4,11 @@ import { list } from '@keystone-next/keystone/schema';
 export const Product = list({
   // TODO
   // access
+  ui: {
+    listView: {
+      initialColumns: ['name', 'description', 'photo', 'price', 'status'],
+    },
+  },
   fields: {
     name: text({ isRequired: true }),
     description: text({
