@@ -9,6 +9,8 @@ import { ProductImage } from './schemas/ProductImage';
 import { User } from './schemas/User';
 import { Lifeseed } from './schemas/Lifeseed';
 import { CartItem } from './schemas/CartItem';
+import { OrderItem } from './schemas/OrderItem';
+import { Order } from './schemas/Order';
 import 'dotenv/config';
 import { insertSeedData } from './seed-data';
 import { sendPasswordResetEmail } from './lib/mail';
@@ -62,6 +64,8 @@ export default withAuth(
       Product,
       ProductImage,
       CartItem,
+      OrderItem,
+      Order,
     }),
     extendGraphqlSchema,
     ui: {
