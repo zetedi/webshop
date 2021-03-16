@@ -4,7 +4,6 @@ import Head from 'next/head';
 import styled from 'styled-components';
 import Link from 'next/Link';
 import ErrorMessage from '../components/ErrorMessage';
-import OrderStyles from '../components/styles/OrderStyles';
 import OrderItemStyles from '../components/styles/OrderItemStyles';
 import formatMoney from '../lib/formatMoney';
 
