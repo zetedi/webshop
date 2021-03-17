@@ -9,6 +9,5 @@ export const Lifeseed = list({
     email: text({ isRequired: true, isUnique: true }),
     lid: text(),
     password: password(),
-    // TODO, add roles, cart and orders
   },
 });
