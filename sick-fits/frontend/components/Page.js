@@ -1,6 +1,8 @@
 import PropTypes from 'prop-types';
 import styled, { createGlobalStyle } from 'styled-components';
+import { ThemeProvider } from '@material-ui/core';
 import Header from './Header';
+import theme from '../lib/theme';
 
 const GlobalStyles = createGlobalStyle`
   @font-face {
@@ -40,7 +42,7 @@ const GlobalStyles = createGlobalStyle`
   }
   a {
     text-decoration: none;
-    color: var(--black)
+    color: #ffffff
   }
 
   a:hover {
@@ -60,11 +62,11 @@ const InnerStyles = styled.div`
 
 export default function Page({ children }) {
   return (
-    <div>
-      <GlobalStyles />
+    <ThemeProvider theme={theme}>
+      <div />
       <Header />
-      <InnerStyles>{children}</InnerStyles>
-    </div>
+      <div>{children}</div>
+    </ThemeProvider>
   );
 }
 
