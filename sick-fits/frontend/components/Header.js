@@ -4,6 +4,7 @@ import makeStyles from '@material-ui/core/styles/makeStyles';
 import Cart from './Cart';
 import Nav from './Nav';
 import Search from './Search';
+import Lifecircle from './lifecircle';
 
 const useStyles = makeStyles((theme) => ({
   ...theme.customTheme,
@@ -30,13 +31,7 @@ export default function Header() {
   return (
     <div>
       <div className={classes.bar}>
-        <img
-          className={classes.img}
-          src="/static/lifeseed.png"
-          alt="lifeseed"
-          height="77"
-          width="77"
-        />
+        <Lifecircle />
         <Nav />
       </div>
       <div className={classes.search}>
