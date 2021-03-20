@@ -1,58 +1,48 @@
 import Link from 'next/link';
-import styled from 'styled-components';
 import Button from '@material-ui/core/Button';
 import makeStyles from '@material-ui/core/styles/makeStyles';
 import Cart from './Cart';
 import Nav from './Nav';
 import Search from './Search';
 
-const HeaderStyles = styled.header`
-  .bar {
-    border-bottom: 1px solid var(--black, black);
-    display: grid;
-    grid-template-columns: auto 1fr;
-    justify-content: space-between;
-    align-items: stretch;
-  }
-
-  .img {
-    padding: 1rem;
-  }
-
-  .sub-bar {
-    display: grid;
-    grid-template-columns: 1fr auto;
-    border-bottom: 1px solid var(--black, black);
-  }
-`;
 const useStyles = makeStyles((theme) => ({
   ...theme.customTheme,
   button: {
     backgroundColor: theme.palette.primary.main,
+  },
+  bar: {
+    borderBottom: '1px solid var(--black, black)',
+    display: 'grid',
+    gridTemplateColumns: 'auto 1fr',
+    padding: '1rem',
+    justifyContent: 'space-between',
+    alignItems: 'stretch',
+  },
+  search: {
+    display: 'grid',
+    gridTemplateColumns: '1fr auto',
+    borderBottom: '1px solid var(--black, black)',
   },
 }));
 
 export default function Header() {
   const classes = useStyles();
   return (
-    <HeaderStyles>
-      <div className="bar">
+    <div>
+      <div className={classes.bar}>
         <img
-          className="img"
+          className={classes.img}
           src="/static/lifeseed.png"
           alt="lifeseed"
-          height="108"
-          width="108"
+          height="77"
+          width="77"
         />
         <Nav />
       </div>
-      <Button className={classes.button} onClick={() => {}}>
-        JAYA
-      </Button>
-      <div className="sub-bar">
+      <div className={classes.search}>
         <Search />
       </div>
       <Cart />
-    </HeaderStyles>
+    </div>
   );
 }

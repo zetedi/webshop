@@ -24,7 +24,7 @@ export const ALL_PRODUCTS_QUERY = gql`
 const ProductsList = styled.div`
   display: grid;
   grid-template-columns: 1fr 1fr;
-  grid-gap: 60px;
+  grid-gap: 3rem;
 `;
 
 export default function Products({ page }) {
