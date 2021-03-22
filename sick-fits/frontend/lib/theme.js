@@ -2,17 +2,18 @@ import { createMuiTheme } from '@material-ui/core';
 import { green } from '@material-ui/core/colors';
 import React from 'react';
 
+// https://coolors.co/#0e4749-#00a484-#379393-#7f3fe9-#fb5012
 // White label theme
 const defaultTheme = createMuiTheme({
   /* By convention, MUI uses dark variant on hover */
   palette: {
     primary: {
-      main: '#404955',
-      contrastText: '#fff',
-      hover: '#4E91E9',
-      active: '#084FA6',
-      focus: '#A875FE',
-      border: '#EEEFF2',
+      main: '#0e4749',
+      contrastText: '#f1f1f1',
+      hover: '#00a484',
+      active: '#379393',
+      focus: '#7f3fe9',
+      border: '#777777',
       get dark() {
         return this.hover;
       },
@@ -52,15 +53,6 @@ const defaultTheme = createMuiTheme({
     highlightsAndDividers: '#DFE5E9',
     elementBackground: '#F6F7F8',
     border: '#D9DDE3',
-    statusChip: {
-      DRAFT: { main: '#F6C452', contrastText: '#21252C' },
-      READY_TO_SIGN: { main: '#68C6DE', contrastText: '#21252C' },
-      SENT_TO_SIGN: { main: '#4270B1', contrastText: 'white' },
-      READY_TO_SEND: { main: '#BED05E', contrastText: '#21252C' },
-      SENT_TO_FILING: { main: '#DFE5E9', contrastText: '#21252C' },
-      SENT: { main: '#29623B', contrastText: 'white' },
-      default: { main: '#DFE5E9', contrastText: '#21252C' },
-    },
   },
   props: {
     MuiTextField: {
@@ -293,6 +285,12 @@ const theme = createMuiTheme({
     },
     hidden: {
       display: 'none',
+    },
+    menuButton: {
+      backgroundColor: defaultTheme.palette.primary.main,
+      color: 'white',
+      marginRight: defaultTheme.spacing(2),
+      padding: '1rem',
     },
   },
 });

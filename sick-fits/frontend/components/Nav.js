@@ -12,11 +12,6 @@ const useStyles = makeStyles((theme) => ({
     display: 'flex',
     justifyContent: 'flex-end',
   },
-  menuButton: {
-    marginRight: theme.spacing(2),
-    backgroundColor: 'teal',
-    color: 'white',
-  },
 }));
 
 export default function Nav() {
@@ -27,7 +22,7 @@ export default function Nav() {
   return (
     <Box className={classes.toolbar}>
       <Link href="/products">
-        <Button className={classes.menuButton}>Products</Button>
+        <Button className={classes.menuButton}>Gifts</Button>
       </Link>
       {user && (
         <>

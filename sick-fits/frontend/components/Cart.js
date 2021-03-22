@@ -1,7 +1,6 @@
 import styled from 'styled-components';
 import CartSyles from './styles/CartStyles';
 import CloseButton from './styles/CloseButton';
-import Supreme from './styles/Supreme';
 import { useUser } from './User';
 import formatMoney from '../lib/formatMoney';
 import calcTotalPrice from '../lib/calcTotalPrice';
@@ -54,7 +53,7 @@ export default function Cart() {
   return (
     <CartSyles open={cartOpen}>
       <header>
-        <Supreme>{me.name}'s cart</Supreme>
+        {me.name}'s cart
         <CloseButton type="button" onClick={closeCart}>
           &times;
         </CloseButton>
