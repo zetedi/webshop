@@ -12,7 +12,7 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: theme.palette.primary.active,
     display: 'grid',
     gridTemplateColumns: 'auto 1fr',
-    padding: '1rem',
+    padding: '.7rem',
     justifyContent: 'space-between',
     alignItems: 'stretch',
   },

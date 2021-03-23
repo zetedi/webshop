@@ -1,16 +1,8 @@
 import { useMutation } from '@apollo/client';
 import gql from 'graphql-tag';
 import styled from 'styled-components';
-
-const BigButton = styled.button`
-  font-size: 3rem;
-  background: none;
-  border: 0;
-  &:hover {
-    color: var(--red);
-    cursor: pointer;
-  }
-`;
+import { Box, Button } from '@material-ui/core';
+import RemoveShoppingCartIcon from '@material-ui/icons/RemoveShoppingCart';
 
 const REMOVE_FROM_CART_MUTATION = gql`
   mutation REMOVE_FROM_CART_MUTATION($id: ID!) {
@@ -30,13 +22,12 @@ export default function RemoveFromCart({ id }) {
     update,
   });
   return (
-    <BigButton
+    <Button
       disabled={loading}
-      title="Remove this item from cart"
-      type="button"
+      title="Remove from cart"
       onClick={removeFromCart}
     >
-      &times;
-    </BigButton>
+      <RemoveShoppingCartIcon />
+    </Button>
   );
 }

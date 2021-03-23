@@ -4,13 +4,9 @@ export default function formatMoney(amount = 0) {
     currency: 'EUR',
     minimumFractionDigits: 2,
   };
-
-  // check if it's a clean amount
   if (amount % 100 === 0) {
     options.minimumFractionDigits = 0;
   }
-
   const formatter = Intl.NumberFormat('fr-FR', options);
-
   return formatter.format(amount / 100);
 }

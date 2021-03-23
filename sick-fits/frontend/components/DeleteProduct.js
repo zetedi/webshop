@@ -1,5 +1,6 @@
 import { useMutation } from '@apollo/client';
 import gql from 'graphql-tag';
+import { Button } from '@material-ui/core';
 
 const DELETE_PRODUCT_MUTATION = gql`
   mutation DELETE_PRODUCT_MUTATION($id: ID!) {
@@ -22,18 +23,16 @@ export default function DeleteProduct({ id, children }) {
     update,
   });
   return (
-    <button
-      type="button"
+    <Button
       disabled={loading}
+      variant="outlined"
       onClick={() => {
         if (confirm('Are you sure you want to delete it?')) {
-          // delete
-          console.log('delete');
           deleteProduct().catch((err) => alert(err.message));
         }
       }}
     >
       {children}
-    </button>
+    </Button>
   );
 }
