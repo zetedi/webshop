@@ -53,7 +53,7 @@ export default function OrdersPage() {
       <OrderUl>
         {allOrders.map((order) => (
           <OrderItemStyles>
-            <Link href={`/order/${order.id}`}>
+            <Link href={`/order/${order.id}`} key={order.id}>
               <a>
                 <div className="order-meta">
                   <p>{countItemsInAnOrder(order)} item(s)</p>
