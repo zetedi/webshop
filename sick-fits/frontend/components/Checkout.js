@@ -10,7 +10,7 @@ import { useState } from 'react';
 import nProgress from 'nprogress';
 import { gql, useMutation } from '@apollo/client';
 import { useRouter } from 'next/dist/client/router';
-import SickButton from './styles/SickButton';
+import { Button } from '@material-ui/core';
 import { useCart } from '../lib/cartState';
 import { CURRENT_USER_QUERY } from './User';
 
@@ -94,7 +94,7 @@ function CheckoutForm() {
       {error && <p style={{ fontSize: 12 }}>{error.message}</p>}
       {graphQLError && <p style={{ fontSize: 12 }}>{graphQLError.message}</p>}
       <CardElement />
-      <SickButton>Check out Now</SickButton>
+      <Button onClick={handleSubmit}>Check out Now</Button>
     </CheckoutFormStyles>
   );
 }
