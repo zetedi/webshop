@@ -1,6 +1,5 @@
 import gql from 'graphql-tag';
 import { useMutation } from '@apollo/client';
-import Form from './styles/Form';
 import useForm from '../lib/useForm';
 import { CURRENT_USER_QUERY } from './User';
 import Error from './ErrorMessage';
@@ -43,7 +42,7 @@ export default function Reset({ token }) {
     ? data?.redeemUserPasswordResetToken
     : undefined;
   return (
-    <Form method="POST" onSubmit={handleSubmit}>
+    <form method="POST" onSubmit={handleSubmit}>
       <h2>Reset your password</h2>
       <Error error={error || goodError} />
       <fieldset>
@@ -75,6 +74,6 @@ export default function Reset({ token }) {
 
         <button type="submit">Request Reset</button>
       </fieldset>
-    </Form>
+    </form>
   );
 }

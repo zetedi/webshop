@@ -2,7 +2,6 @@ import { useMutation } from '@apollo/client';
 import gql from 'graphql-tag';
 import Router from 'next/router';
 import useForm from '../lib/useForm';
-import Form from './styles/Form';
 import DisplayError from './ErrorMessage';
 import { ALL_PRODUCTS_QUERY } from './Products';
 
@@ -49,7 +48,7 @@ export default function CreateProduct() {
   console.log(createProduct);
   return (
     <div>
-      <Form
+      <form
         onSubmit={async (e) => {
           e.preventDefault();
           const res = await createProduct();
@@ -106,7 +105,7 @@ export default function CreateProduct() {
           </label>
           <button type="submit">+ Add product</button>
         </fieldset>
-      </Form>
+      </form>
     </div>
   );
 }

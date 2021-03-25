@@ -1,8 +1,8 @@
 import { useMutation, useQuery } from '@apollo/client';
 import gql from 'graphql-tag';
+import { Button, TextField } from '@material-ui/core';
 import useForm from '../lib/useForm';
 import DisplayError from './ErrorMessage';
-import Form from './styles/Form';
 
 const SINGLE_PRODUCT_QUERY = gql`
   query SINGLE_PRODUCT_QUERY($id: ID!) {
@@ -52,7 +52,7 @@ export default function UpdateProduct({ id }) {
 
   return (
     <div>
-      <Form
+      <form
         onSubmit={async (e) => {
           e.preventDefault();
           const res = await updateProduct({
@@ -71,42 +71,33 @@ export default function UpdateProduct({ id }) {
       >
         <DisplayError error={error || updateError} />
         <fieldset disabled={updateLoading} aria-busy={updateLoading}>
-          {/* aria-busy> */}
-          <label htmlFor="name">
-            Name
-            <input
-              type="text"
-              id="name"
-              name="name"
-              placeholde="Name"
-              value={inputs.name}
-              onChange={handleChange}
-            />
-          </label>
-          <label htmlFor="price">
-            Price
-            <input
-              type="number"
-              id="price"
-              name="price"
-              placeholde="price"
-              value={inputs.price}
-              onChange={handleChange}
-            />
-          </label>
-          <label htmlFor="description">
-            Description
-            <textarea
-              id="description"
-              name="description"
-              placeholde="Description"
-              value={inputs.description}
-              onChange={handleChange}
-            />
-          </label>
-          <button type="submit">Update product</button>
+          <TextField
+            type="text"
+            id="name"
+            name="name"
+            placeholde="Name"
+            value={inputs.name}
+            onChange={handleChange}
+          />
+          <TextField
+            type="number"
+            id="price"
+            name="price"
+            placeholde="price"
+            value={inputs.price}
+            onChange={handleChange}
+          />
+          <TextField
+            type="textarea"
+            id="description"
+            name="description"
+            placeholde="Description"
+            value={inputs.description}
+            onChange={handleChange}
+          />
+          <Button type="submit">Update product</Button>
         </fieldset>
-      </Form>
+      </form>
     </div>
   );
 }
