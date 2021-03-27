@@ -1,6 +1,7 @@
-import styled from 'styled-components';
+import { makeStyles } from '@material-ui/core/styles';
+import { Box, IconButton } from '@material-ui/core';
+import CloseCart from '@material-ui/icons/CancelPresentationOutlined';
 import CartSyles from './styles/CartStyles';
-import CloseButton from './styles/CloseButton';
 import { useUser } from './User';
 import formatMoney from '../lib/formatMoney';
 import calcTotalPrice from '../lib/calcTotalPrice';
@@ -8,25 +9,28 @@ import { useCart } from '../lib/cartState';
 import RemoveFromCart from './RemoveFromCart';
 import Checkout from './Checkout';
 
-const CartItemStyles = styled.li`
-  padding: 1rem 0;
-  border-bottom: 1px solid var(--lightGrey);
-  display: grid;
-  grid-template-columns: auto 1fr auto;
-  img {
-    margin-right: 1rem;
-  }
-  h3,
-  p {
-    margin: 0;
-  }
-`;
+const useStyles = makeStyles((theme) => ({
+  ...theme.customTheme,
+  cartItem: {
+    padding: '1rem 0',
+    borderBottom: '1px solid var(--lightGrey)',
+    display: 'grid',
+    gridTemplateColumns: 'auto 1fr auto',
+    '& img': {
+      marginRight: '1rem',
+    },
+    '& h3 p': {
+      margin: 0,
+    },
+  },
+}));
 
 function CartItem({ cartItem }) {
+  const classes = useStyles();
   const { product } = cartItem;
   if (!product) return null;
   return (
-    <CartItemStyles>
+    <Box className={classes.cartItem}>
       <img
         width="100"
         src={product.photo.image.publicUrlTransformed}
@@ -43,7 +47,7 @@ function CartItem({ cartItem }) {
         </p>
       </div>
       <RemoveFromCart id={cartItem.id} />
-    </CartItemStyles>
+    </Box>
   );
 }
 export default function Cart() {
@@ -52,11 +56,11 @@ export default function Cart() {
   if (!me) return null;
   return (
     <CartSyles open={cartOpen}>
-      <header>
+      <header style={{ display: 'flex', justifyContent: 'space-between' }}>
         {me.name}'s cart
-        <CloseButton type="button" onClick={closeCart}>
-          &times;
-        </CloseButton>
+        <IconButton aria-label="closecart" onClick={closeCart}>
+          <CloseCart fontSize="large" />
+        </IconButton>
       </header>
       <ul>
         {me.cart.map((cartItem) => (

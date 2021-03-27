@@ -5,16 +5,6 @@ import Header from './Header';
 import theme from '../lib/theme';
 
 const GlobalStyles = createGlobalStyle`
-  @font-face {
-  font-family: 'radnika_next';
-  src: url('/static/radnikanext-medium-webfont.woff2');
-  /* font-family: 'blackchanceryregular';
-  src: url('/static/blkchcry.woff2') */
-  format('woff2');
-  font-weight: 'normal';
-  font-style: 'normal';
-
-}
   html {
     --red: #ff0000;
     --black: #393939;
@@ -40,18 +30,7 @@ const GlobalStyles = createGlobalStyle`
     font-size: 1.5rem;
     line-height:2;
   }
-  a {
-    text-decoration: none;
-    color: #ffffff
-  }
 
-  a:hover {
-    text-decoration: underline;
-  }
-
-  button {
-    font-family: 'radnika_next', ---apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-  }
 `;
 
 const InnerStyles = styled.div`
@@ -65,7 +44,7 @@ export default function Page({ children }) {
     <ThemeProvider theme={theme}>
       <div />
       <Header />
-      <div>{children}</div>
+      <div style={{ margin: 0 }}>{children}</div>
     </ThemeProvider>
   );
 }
