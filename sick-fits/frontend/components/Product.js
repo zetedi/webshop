@@ -1,7 +1,6 @@
 import Link from 'next/link';
 import { makeStyles } from '@material-ui/core/styles';
-import { Box } from '@material-ui/core';
-import ItemStyles from './styles/ItemStyles';
+import { Box, Button } from '@material-ui/core';
 import formatMoney from '../lib/formatMoney';
 import DeleteProduct from './DeleteProduct';
 import AddToCart from './AddToCart';
@@ -56,12 +55,43 @@ const useStyles = makeStyles((theme) => ({
       padding: '0 1rem',
     },
   },
+
+  product: {
+    backgroundColor: 'white',
+    boxShadow: '0 12px 24px 0 rgba(0,0,0,0.09)',
+    position: 'relative',
+    display: 'flex',
+    flexDirection: 'column',
+    '& img': {
+      width: '100%',
+      height: '20rem',
+      objectFit: 'cover',
+    },
+    '& p': {
+      lineHeight: 2,
+      fontWeight: 300,
+      flexGrow: 1,
+      padding: '0 3rem',
+      fontSize: '1.5rem',
+    },
+    '& .buttonList': {
+      display: 'grid',
+      width: '100%',
+      borderTop: '1px solid #e1e1e1',
+      gridTemplateColumns: 'repeat(auto-fit, minmax(100px, 1fr))',
+      gridGap: '3px',
+      background: '#e1e1e1',
+      '& > *': {
+        background: 'white',
+      },
+    },
+  },
 }));
 
 export default function Product({ product }) {
   const classes = useStyles();
   return (
-    <ItemStyles>
+    <Box className={classes.product}>
       <img
         src={product?.photo?.image?.publicUrlTransformed}
         alt={product.name}
@@ -82,11 +112,11 @@ export default function Product({ product }) {
             },
           }}
         >
-          Edit
+          <Button>Edit</Button>
         </Link>
         <DeleteProduct id={product.id}>Delete</DeleteProduct>
         <AddToCart id={product.id} />
       </div>
-    </ItemStyles>
+    </Box>
   );
 }
