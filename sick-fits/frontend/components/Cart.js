@@ -1,7 +1,6 @@
 import { makeStyles } from '@material-ui/core/styles';
-import { Box, IconButton } from '@material-ui/core';
+import { Box, Drawer, IconButton } from '@material-ui/core';
 import CloseCart from '@material-ui/icons/CancelPresentationOutlined';
-import CartSyles from './styles/CartStyles';
 import { useUser } from './User';
 import formatMoney from '../lib/formatMoney';
 import calcTotalPrice from '../lib/calcTotalPrice';
@@ -21,6 +20,35 @@ const useStyles = makeStyles((theme) => ({
     },
     '& h3 p': {
       margin: 0,
+    },
+  },
+  cart: {
+    minWidth: '500px',
+    display: 'grid',
+    gridTemplateRows: 'auto 1fr auto',
+    '& header': {
+      borderBottom: '5px solid var(--black)',
+      marginBottom: '2rem',
+      paddingBottom: '2rem',
+    },
+    '& footer': {
+      borderTop: '10px double #000',
+      marginTop: '2rem',
+      paddingTop: '2rem',
+      /* display: grid;
+    grid-template-columns: auto auto; */
+      alignItems: 'center',
+      fontSize: '3rem',
+      fontWeight: '900',
+      '& p': {
+        margin: '0',
+      },
+    },
+    '& ul': {
+      margin: '0',
+      padding: '0',
+      listStyle: 'none',
+      overflow: 'scroll',
     },
   },
 }));
@@ -51,13 +79,19 @@ function CartItem({ cartItem }) {
   );
 }
 export default function Cart() {
+  const classes = useStyles();
   const me = useUser();
   const { cartOpen, closeCart } = useCart();
   if (!me) return null;
   return (
-    <CartSyles open={cartOpen}>
+    <Drawer
+      anchor="right"
+      open={cartOpen}
+      onClose={closeCart}
+      className={classes.cart}
+    >
       <header style={{ display: 'flex', justifyContent: 'space-between' }}>
-        {me.name}'s cart
+        {me.name}'s carting
         <IconButton aria-label="closecart" onClick={closeCart}>
           <CloseCart fontSize="large" />
         </IconButton>
@@ -71,6 +105,6 @@ export default function Cart() {
         <p>{formatMoney(calcTotalPrice(me.cart))}</p>
         <Checkout />
       </footer>
-    </CartSyles>
+    </Drawer>
   );
 }

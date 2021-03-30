@@ -1,7 +1,6 @@
 import { useMutation } from '@apollo/client';
 import gql from 'graphql-tag';
-import styled from 'styled-components';
-import { Box, Button } from '@material-ui/core';
+import { Button } from '@material-ui/core';
 import RemoveShoppingCartIcon from '@material-ui/icons/RemoveShoppingCart';
 
 const REMOVE_FROM_CART_MUTATION = gql`

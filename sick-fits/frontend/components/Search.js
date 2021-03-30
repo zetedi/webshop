@@ -1,9 +1,10 @@
 import { useLazyQuery } from '@apollo/client';
+import { Box } from '@material-ui/core';
+import { makeStyles } from '@material-ui/core/styles';
 import { resetIdCounter, useCombobox } from 'downshift';
 import gql from 'graphql-tag';
 import { debounce } from 'lodash';
 import { useRouter } from 'next/dist/client/router';
-import { DropDown, DropDownItem, SearchStyles } from './styles/DropDown';
 
 const SEARCH_PRODUCTS_QUERY = gql`
   query SEARCH_PRODUCTS_QUERY($searchTerm: String!) {
@@ -25,7 +26,55 @@ const SEARCH_PRODUCTS_QUERY = gql`
     }
   }
 `;
+
+// const glow = keyframes`
+//   from {
+//     box-shadow: 0 0 0px yellow;
+//   }
+
+//   to {
+//     box-shadow: 0 0 10px 1px yellow;
+//   }
+// `;
+
+const useStyles = makeStyles((theme) => ({
+  ...theme.customTheme,
+  dropDown: {
+    position: 'absolute',
+    width: '100%',
+    zIndex: 2,
+    border: '1px solid red',
+  },
+  dropDownItem: {
+    borderBottom: '1px solid #e3e3e3',
+    // background: ${(props) => (props.highlighted ? '#f7f7f7' : 'white')};
+    padding: '1rem',
+    transition: 'all 0.2s',
+    // ${(props) => (props.highlighted ? 'padding-left: 2rem;' : null)};
+    display: 'flex',
+    alignItems: 'center',
+    borderLeft: '7px solid',
+    //  ${(props) => (props.highlighted ? props.theme.lightgrey : 'white')};
+    '& img': {
+      marginRight: '10px',
+    },
+  },
+  search: {
+    position: 'relative',
+    '& input': {
+      width: '100%',
+      padding: '10px',
+      border: 0,
+      fontSize: '1rem',
+      // "& .loading" {
+      //   animation: "${glow} 0.5s ease-in-out infinite alternate";
+      // }
+    },
+  },
+}));
+
 export default function Search() {
+  const classes = useStyles();
   const router = useRouter();
   const [findItems, { loading, data, error }] = useLazyQuery(
     SEARCH_PRODUCTS_QUERY,
@@ -62,22 +111,24 @@ export default function Search() {
     itemToString: (item) => item?.name || '',
   });
   return (
-    <SearchStyles>
+    <Box className={classes.search}>
       <div {...getComboboxProps()}>
         <input
           {...getInputProps({
             type: 'search',
-            placeholder: 'Search for an offer',
+            placeholder: 'Search',
             id: 'search',
             className: loading ? 'loading' : '',
           })}
         />
       </div>
-      <DropDown {...getMenuProps()}>
+      <Box className={classes.dropDown} {...getMenuProps()}>
         {isOpen &&
           items.map((item, index) => (
-            <DropDownItem
+            <Box
+              className={classes.dropDownItem}
               key={item.id}
+              // TODO highlight
               {...getItemProps({ item })}
               highlighted={index === highlightedIndex}
             >
@@ -87,12 +138,14 @@ export default function Search() {
                 width="50"
               />
               {item.name}
-            </DropDownItem>
+            </Box>
           ))}
         {isOpen && !items.length && !loading && (
-          <DropDownItem>Sorry, no items found for {inputValue}</DropDownItem>
+          <Box className={classes.dropDownItem}>
+            Sorry, no items found for {inputValue}
+          </Box>
         )}
-      </DropDown>
-    </SearchStyles>
+      </Box>
+    </Box>
   );
 }
